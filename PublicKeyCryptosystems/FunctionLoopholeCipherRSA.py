@@ -229,28 +229,28 @@ class RSASystem:
         
         # Шаг 1: Алиса подписывает сообщение своим секретным ключом
         print("ШАГ 1: Алиса подписывает сообщение (шифрует своим секретным ключом)")
-        print(f"  e = m^{alice.c} mod {alice.N}")
+        print(f"  e = m ^ {alice.c} mod {alice.N}")
         signature = alice.sign(message)
         print(f"  Подпись (зашифрованное сообщение) e = {signature}")
         print()
         
         # Шаг 2: Алиса шифрует подпись открытым ключом Боба
         print("ШАГ 2: Алиса шифрует подпись открытым ключом Боба")
-        print(f"  f = e^{bob.d} mod {bob.N}")
+        print(f"  f = e ^ {bob.d} mod {bob.N}")
         double_encrypted = alice.encrypt(signature, bob)
         print(f"  Дважды зашифрованное сообщение f = {double_encrypted}")
         print()
         
         # Шаг 3: Боб расшифровывает своим секретным ключом
         print("ШАГ 3: Боб расшифровывает своим секретным ключом")
-        print(f"  u = f^{bob.c} mod {bob.N}")
+        print(f"  u = f ^ {bob.c} mod {bob.N}")
         decrypted_signature = bob.decrypt(double_encrypted)
         print(f"  Расшифрованная подпись u = {decrypted_signature}")
         print()
         
         # Шаг 4: Боб проверяет подпись открытым ключом Алисы
         print("ШАГ 4: Боб проверяет подпись открытым ключом Алисы")
-        print(f"  w = u^{alice.d} mod {alice.N}")
+        print(f"  w = u ^ {alice.d} mod {alice.N}")
         is_valid = bob.verify_signature(message, decrypted_signature, alice)
         print(f"  Результат проверки: {is_valid}")
         print()
@@ -262,12 +262,12 @@ class RSASystem:
             print("✗ Подпись недействительна!")
         
         # Демонстрация атаки (злоумышленник не может подделать подпись)
-        print("\n" + "-"*60)
+        print("\n" + "-" * 60)
         print("ДЕМОНСТРАЦИЯ: Попытка подделки подписи")
-        print("-"*60)
+        print("-" * 60)
         
         # Злоумышленник (Ева) пытается подделать сообщение от Алисы
-        eva = RSAUser("Ева", key_size=4)
+        eva = RSAUser("Ева", key_size = 4)
         fake_message = 20
         print(f"Ева пытается отправить сообщение {fake_message} от имени Алисы")
         
@@ -292,18 +292,18 @@ class RSASystem:
         except Exception as e:
             print(f"  Ошибка при попытке подделки: {e}")
         
-        print("\n" + "="*60)
+        print("\n" + "=" * 60)
     
     @staticmethod
     def demonstrate_with_different_keys():
         """Демонстрация работы с разными размерами ключей"""
-        print("\n" + "="*60)
+        print("\n" + "=" * 60)
         print("ДЕМОНСТРАЦИЯ С РАЗНЫМИ РАЗМЕРАМИ КЛЮЧЕЙ")
-        print("="*60 + "\n")
+        print("=" * 60 + "\n")
         
         # Создаем пользователей с разными размерами ключей
-        alice = RSAUser("Алиса (1024 бит)", key_size=6)
-        bob = RSAUser("Боб (2048 бит)", key_size=7)
+        alice = RSAUser("Алиса (1024 бит)", key_size = 6)
+        bob = RSAUser("Боб (2048 бит)", key_size = 7)
         
         # Сообщение должно быть меньше N обоих пользователей
         message = 42
@@ -323,10 +323,10 @@ class RSASystem:
     @staticmethod
     def run_all_demonstrations():
         """Запуск всех демонстраций"""
-        print("\n" + "█"*60)
+        print("\n" + "█" * 60)
         print("РЕАЛИЗАЦИЯ СИСТЕМЫ RSA")
         print("На основе текста: Односторонняя функция с «лазейкой» и шифр RSA")
-        print("█"*60)
+        print("█" * 60)
         
         # Демонстрация базового протокола
         RSASystem.demonstrate_basic_protocol()
@@ -337,9 +337,9 @@ class RSASystem:
         # Демонстрация с разными ключами
         RSASystem.demonstrate_with_different_keys()
         
-        print("\n" + "█"*60)
+        print("\n" + "█" * 60)
         print("ЗАКЛЮЧЕНИЕ")
-        print("█"*60)
+        print("█" * 60)
         print("""
 1. RSA использует одностороннюю функцию с лазейкой:
    - Шифрование (возведение в степень) - легко
@@ -355,7 +355,7 @@ class RSASystem:
 
 4. В реальных системах используются ключи размером 1024, 2048 или 4096 бит
         """)
-        print("█"*60)
+        print("█" * 60)
 
 
 # Пример использования
