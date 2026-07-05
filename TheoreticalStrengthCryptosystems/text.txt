@@ -1,0 +1,11 @@
+# Просто демонстрация
+python vernam.py
+
+# Сгенерировать ключ на дискету (1.44 МБ)
+python vernam.py generate --key my_secret.key --size 1.44
+
+# Зашифровать письмо
+python vernam.py encrypt --input letter.txt --output letter.enc --key my_secret.key
+
+# Расшифровать письмо
+python vernam.py decrypt --input letter.enc --output letter_decrypted.txt --key my_secret.key
